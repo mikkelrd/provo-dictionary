@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="provoDictionary">
+<head>
+  <title>The Provo Dictionary</title>
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" >
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" >
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:400,700" >
+  <link href='' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="main.css" >
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body class="container" ng-controller="mainCtrl">
+
+  <header>
+    <h1><i class="fa fa-book fa-fw"></i>&nbsp;&nbsp;provo dictionary</h1>
+    <div><em>noun</em>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right fa-fw"></i>&nbsp;a regular glossary for an irregular valley</div>
+  </header>
+
+  <div id="content">
+    <div id="entries">
+      <div class="entry" ng-repeat="entry in data">
+        <!-- {{entry.$id}}: {{entry.$value}} -->
+        <div data-toggle="collapse" data-target="#{{entry.$id}}"><h4>{{entry.term}}</h4></div>
+        <div ng-attr-id="{{entry.$id}}" class="collapse">
+          <div class="pos">{{entry.pos}}</div>
+          <div>&nbsp;&nbsp;<i class="fa fa-caret-right fa-fw"></i>&nbsp;&nbsp;{{entry.def}}</div>
+          <div ng-show"entry.link">&nbsp;&nbsp;<i class="fa fa-info fa-fw"></i>&nbsp;&nbsp;<a ng-href="{{entry.link}}">{{entry.link}}</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contribute">
+      <button class="btn btn-default" data-toggle="collapse" data-target="#contribute-forms">chime in!</button>
+      <div id="contribute-forms" class="collapse">
+        <form role="form">
+          <div class="form-group">
+            <div class="form-text">submit new, or...</div>
+            <input type="text" class="form-control" placeholder="new term..." maxlength="50" ng-model="newEntry.term">
+            <input type="text" class="form-control" placeholder="new term definition..." maxlength="200" ng-model="newEntry.def">
+            <button type="button" class="btn btn-default form-control" ng-click="addWord(newEntry)">submit definition</button>
+          </div>
+        </form>
+        <form role="form">
+          <div class="form-group">
+            <div class="form-text">...put in a request</div>
+            <input class="form-control" placeholder="requested term..." maxlength="50" ng-model="newReq">
+            <button type="button" class="btn btn-default form-control" ng-click="addReq(newReq)">request definition</button>
+          </div>
+        </form>
+        <div class="alert alert-success" ng-show="submitSuccess">
+          <strong>thank you!</strong> your request will be moderated.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>upcoming features: sort, search, flare?</div>
+    <div>built by: <a href="http://www.mikkelrd.com">Mikkel Davis</a></div>
+  </footer>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js" ></script>
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+  <script type="text/javascript" src="ngApp.js" ></script>
+</body>
+</html>
