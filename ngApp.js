@@ -20,10 +20,10 @@ angular
     var fbRef = new Firebase($firebase.url);
     this.data = $firebaseArray(fbRef.child('entries'));
     this.addWord = function(newEntry){
-      fbRef.child('entriesPending').push().set(newEntry);
+      fbRef.child('entriesPending').push(newEntry);
     };
     this.addReq = function(newReq){
-      fbRef.child('requestsPending').push().set(newReq);
+      fbRef.child('requestsPending').push(newReq);
     };
   });
 
@@ -31,7 +31,7 @@ angular
 
 
 
-//temple, zoobie, state street, univ ave, center street, univ pkwy,
+//zoobie, state street, univ ave, center street, univ pkwy,
 //promieses, callbacks, on, once
 //search (search fb, add to front-end array which is still filtered by search term), clear search
 //sort by search/click frequency counter

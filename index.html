@@ -26,7 +26,9 @@
         <div ng-attr-id="{{entry.$id}}" class="collapse">
           <div class="pos">{{entry.pos}}</div>
           <div>&nbsp;&nbsp;<i class="fa fa-caret-right fa-fw"></i>&nbsp;&nbsp;{{entry.def}}</div>
-          <div ng-show"entry.link">&nbsp;&nbsp;<i class="fa fa-info fa-fw"></i>&nbsp;&nbsp;<a ng-href="{{entry.link}}">{{entry.link}}</a></div>
+          <div ng-show"entry.links[0]">
+            <div ng-repeat="link in entry.links">&nbsp;&nbsp;<i class="fa fa-info fa-fw"></i>&nbsp;&nbsp;<a ng-href="{{link}}">{{link}}</a></div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,7 +59,7 @@
   </div>
 
   <footer>
-    <div>upcoming features: sort, search, flare?</div>
+    <div>upcoming features: sort, search, flair?</div>
     <div>built by: <a href="http://www.mikkelrd.com">Mikkel Davis</a></div>
   </footer>
 
